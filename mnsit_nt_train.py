@@ -71,12 +71,12 @@ for k in range(ep_sz):
 		y_temp =data_out[l]
 		for i in range(x_temp.shape[0]):
 			frw_pass(x_temp[i])
-			cost_grad1 = fw.cost_grad(y_temp[i],lay2.out)
+			cost_grad1 = fw.intropy_cost_grad(y_temp[i],lay2.out)
 			bck_pass(cost_grad1)
 
 		#print "the weight is layer one is ", lay1.W
-		lay1.update_weight(5,x_temp.shape[0])
-		lay2.update_weight(.3,x_temp.shape[0])
+		lay1.update_weight(.5,x_temp.shape[0])
+		lay2.update_weight(.05,x_temp.shape[0])
 		lay1_w[pntr] = lay1.W
 		lay2_w[pntr] = lay2.W
 		pntr= pntr +1

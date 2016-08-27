@@ -18,8 +18,8 @@ for i in range(10):
 #y = y.values
 
 x_in = x[:size]
-y_in = y[:ize]
+y_in = y[:size]
 #x_in = x[:-5000]
 #y_in = y[:-5000]
-x_test  = x[-5000:]
-y_test = y[-5000:]
+x_test  = x[-1000:]
+y_test = y[-1000:]
