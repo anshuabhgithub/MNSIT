@@ -18,7 +18,7 @@ class Nu_layer:
 
 	def update_weight(self,alpha,N):
 		self.W = self.W - alpha*self.Grad/N
-		self.bias = self.bias - alpha*self.b_grad/N
+		self.bias = self.bias - 2*alpha*self.b_grad/N
 		self.Grad = np.zeros_like(self.W)
 		self.b_grad = np.zeros_like(self.bias)
 		#print "after updation  " 
@@ -26,11 +26,9 @@ class Nu_layer:
 	def frw_pass(self,in_put):
 		self.in_put =in_put
 		#in_put = in_put[:,np.newaxis]
-		self.out = fp.sigmoid(self.W.dot(in_put)+self.bias)
+		self.out = fp.sigmoid(self.in_put.dot(self.W.T)+self.bias)
 
 	def bck_pass(self,grad_in):
-		#out = self.out
-		#out  = out[:,np.newaxis]
 		temp_grad = self.out*(1-self.out)*grad_in
 		self.b_grad = self.b_grad +temp_grad
 		temp_grad = temp_grad[:,np.newaxis]
