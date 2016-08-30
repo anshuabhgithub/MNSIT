@@ -28,6 +28,7 @@ ep_sz = 35
 data_size = x.shape[0]
 alpha1 = .3
 alpha2 = .1
+reg_para = 0
 
 #temp variable
 pntr =0;
@@ -59,7 +60,7 @@ print "intial cost is ", cost
 cost =0
 no_trance =data_size/mini_batch
 for k in range(ep_sz):
-	if(k>=0):
+	if(k>=4):
 		alpha1 =.05
 		alpha2 = .05
 	index = nu.arange(data_size)
@@ -74,12 +75,12 @@ for k in range(ep_sz):
 		y_temp =data_out[l]
 		for i in range(x_temp.shape[0]):
 			frw_pass(x_temp[i])
-			cost_grad1 = fw.intropy_cost_grad(y_temp[i],lay2.out)
+			cost_grad1 = fw.cost_grad(y_temp[i],lay2.out)
 			bck_pass(cost_grad1)
 
 		#print "the weight is layer one is ", lay1.W
-		lay1.update_weight(alpha1,x_temp.shape[0])
-		lay2.update_weight(alpha2,x_temp.shape[0])
+		lay1.update_weight(alpha1,x_temp.shape[0],reg_para)
+		lay2.update_weight(alpha2,x_temp.shape[0],reg_para)
 		lay1_w[pntr] = lay1.W
 		lay2_w[pntr] = lay2.W
 		pntr= pntr +1

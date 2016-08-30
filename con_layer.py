@@ -16,13 +16,12 @@ class Nu_layer:
 		self.Grad = np.zeros_like(self.W)
 		self.b_grad = np.zeros_like(self.bias)
 
-	def update_weight(self,alpha,N):
-		self.W = self.W - alpha*self.Grad/N
+	def update_weight(self,alpha,N,reg_para):
+		self.W = self.W - alpha*self.Grad/N -self.W*reg_para/N
 		self.bias = self.bias - 2*alpha*self.b_grad/N
 		self.Grad = np.zeros_like(self.W)
 		self.b_grad = np.zeros_like(self.bias)
-		#print "after updation  " 
-		#self.Grad
+
 	def frw_pass(self,in_put):
 		self.in_put =in_put
 		#in_put = in_put[:,np.newaxis]
