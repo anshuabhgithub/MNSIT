@@ -114,6 +114,6 @@ for i in range(x_test.shape[0]):
 	cost=fw.cost(y_temp,y_test[i]) +cost
 print "test cost is", cost
 
-i =range(data_size*ep_sz)
+#i =range(data_size*ep_sz)
 #plt.scatter(i,lay1_w[:,1,0],color ='red')
 #plt.scatter(i,lay2_w[:,1,0],color ='blue')
